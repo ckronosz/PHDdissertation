@@ -1,0 +1,19 @@
+%     ESTA ES UNA DEMOSTRACIÓN DEL FORMATO DE CADA CAPÍTULO. INCLUYE:
+  %% UN TÍTULO CON FUENTE MUY GRANDE,
+  %% UNA TABLA DE CONTENIDOS DE CADA SECCIÓN DEL CAPÍTULO, ASÍ COMO 
+  %% UNA LETRA CAPITAL DE 3 LINEAS.
+  
+% !TeX spellcheck = es_ES
+\begin{inicio}{}{}%
+	{\small 
+		\startcontents[chapters]
+		\printcontents[chapters]{}{1}{\setcounter{tocdepth}{1}}
+	}
+\end{inicio}
+\bigskip 
+
+
+\section{Sección 1}
+\lettrine[lines = 3]{\sffamily\color{chapopcolor} L}{etra capital de tres lineas} y palabras en versalitas.
+
+\printendnotes  % para imprimir las notas finales
