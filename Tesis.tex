@@ -1,0 +1,229 @@
+	% !TeX program = xelatex
+	% !TeX spellcheck = es_ES
+\documentclass[12pt,letterpaper]{book} % document class
+\usepackage[utf8x]{inputenc}	% input encoding
+\usepackage[spanish]{babel}		% language
+\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+\usepackage[scale=0.8]{roboto-mono}	% scaled roboto mono for texttt shape
+\usepackage[expert,sfscaled,utopia]{mathdesign}
+\usepackage[scaled=0.95]{classico}
+\usepackage[round,elide]{natbib}		% bibliography with round parenthesis
+	\bibliographystyle{authordate1}		%authordate1: initial caps; 3: author in smallcaps
+\usepackage{ucs} 				% in conjunction with inputenc, to write in UTF-8
+\usepackage{csquotes}			% for specifying quotes
+	\MakeOuterQuote{"}
+\usepackage{makeidx}			% to create analytical index
+	\makeindex
+\usepackage{amsmath}
+\usepackage{amsthm}				
+	\newtheorem{definition}{Definici\'on}		% to define Definicion environment
+	\newtheorem{theorem}{Teorema}				% to define Teorema environment
+\usepackage{physics}			% for bra-ket and other physics notation
+\usepackage{multirow}			% for multiple rows in a table (used for titlepage)
+\usepackage{longtable}			% for breakable tables
+\usepackage{enumitem}			% to modify enumeration environments
+	\setlist[description]{font=\normalfont\scshape}	% descriptions with small caps
+	\renewcommand{\labelitemi}{\textbullet}	% itemize with bullet instead of blacksquare
+\usepackage{lettrine} 			% for capital letters at the start of the chapter
+\usepackage{color}				% to use colors
+\usepackage{xcolor}				% to define colors used for tables and titles
+	\definecolor{blueish}{RGB}{4,122,255}
+	\definecolor{aqua}{RGB}{0,100,150}
+	\definecolor{deepblue}{RGB}{0,102,205}
+	\definecolor{newgray}{RGB}{77,77,77}
+	\definecolor{newblue}{RGB}{0,0,89}
+	\definecolor{chapopcolor}{RGB}{0,100,150}
+\usepackage{titletoc}			% for table of contents at beginning of chapters
+\usepackage[explicit]{titlesec}	% for title formats
+	%\titleformat{\chapter}[hang]{\sffamily\huge\bfseries\color{blueish}}{Capítulo \thechapter.}{0.5em}{}[]{#1.}
+	\titleformat{name=\chapter,numberless}[hang]{}{}{0pt}{\sffamily\huge\bfseries\color{chapopcolor!80!black} #1}
+		\titlespacing*{name=\chapter,numberless}{0pt}{0pt}{*10}     %% adjust 30 as per need
+	\titleformat{name=\section}{}{}{0pt}{\sffamily\Large\bfseries\color{chapopcolor}\thesection.  #1}
+	\titleformat{name=\section,numberless}{}{}{0pt}{\sffamily\large\bfseries\color{black}#1}
+	\titleformat{name=\subsection}{}{}{0pt}{\sffamily\large\bfseries\color{chapopcolor!90}\thesubsection. #1}
+	\titleformat{name=\subsection,numberless}{}{}{0pt}{\sffamily\large\bfseries\color{black}#1}
+	\titleformat{name=\subsubsection}{}{}{0pt}{\sffamily\normalsize\bfseries\color{chapopcolor} \quad \thesubsubsection. #1}
+	\titleformat{name=\subsubsection,numberless}{}{}{0pt}{\sffamily\normalsize\bfseries\color{chapopcolor}\qquad#1}
+	\titleformat{name=\paragraph}[runin]{}{}{0pt}{\sffamily\normalsize\bfseries\color{black}#1}
+		\titlespacing*{name=\paragraph}{0pt}{1ex}{1ex}
+\usepackage{graphicx}			% builds upon the graph­ics package
+	\graphicspath{ {images/} }	% the folder for images
+\usepackage[left=2.5cm,right=2.2cm,top=2.7cm,bottom=2.5cm]{geometry}
+\usepackage[reset=true,backref=true]{enotez}	% to use endnotes instead of footnotes
+	\setenotez{reset = true,list-heading = \section*{#1}}
+	\let\footnote=\endnote
+\usepackage{tikz}				% for tikz images
+	\usetikzlibrary{babel}
+	\usetikzlibrary{arrows.meta,calc,positioning,shapes,arrows,decorations.pathmorphing}
+\usepackage{tcolorbox}			% for colored boxes
+	\tcbuselibrary{breakable,skins}
+\newtcolorbox{inicio}[1][]	% for boxes containing chapter ToC
+{enhanced jigsaw,center,colframe=blue!50!black!50!white,colback=white,opacityback=0.7,drop fuzzy shadow=blue!50!black!60!white,boxrule=0.4pt}
+\usepackage[breaklinks=true,
+colorlinks=true,linkcolor=newblue,urlcolor=newblue,citecolor=newblue,anchorcolor=newblue,
+bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
+\usepackage{epigraph}			% for epigraphs
+	\setlength\epigraphwidth{.7\textwidth}
+	\setlength\epigraphrule{0pt}
+	\renewcommand{\textflush}{flushepinormal}
+\renewcommand{\baselinestretch}{1.2}		% redefines space between lines
+\raggedbottom % to allow ragged page bottoms
+\setlength{\parskip}{0.3em}				% redefines space between paragraphs
+\newcommand{\counterfactual}{\ensuremath{%			to define Lewis's counterfactual conditional
+		\Box\kern-1.5pt
+		\raise0.1pt\hbox{$\mathord{\rightarrow}$}}}
+
+%%%%%% begin - CHAPTER OPENER format %%%%%% 
+	\titleformat{name=\chapter}[display]%
+	{\normalfont\hfuzz=\maxdimen}%
+	{\color{gray}\raggedleft\fontsize{55}{2}\sffamily\bfseries\setlength{\baselineskip}{0pt}\thechapter}%%	FOR CHAP NUMBER
+	{0.5pc}%
+	{\color{chapopcolor!80!black}\centering\fontsize{30}{30}\sffamily\bfseries #1}%
+	\titlespacing*{\chapter}{0pt}{*1}{*3}
+%%%%%% end - CHAPTER OPENER %%%%%% 
+%%%%%% BEGIN - TABLE OF CONTENTS FORMAT %%%%%%
+	\contentsmargin{0cm}%
+	%%%% CHAPTER IN TOC
+	\titlecontents{chapter}[0pc]
+	{\addvspace{18pt}\hypersetup{linkcolor=black} \sffamily}%
+	{\bfseries\chaptertitlename~\thecontentslabel. \large}
+	{\qquad\qquad \large}
+	{\hypersetup{linkcolor=black}\normalsize\sffamily\dotfill \thecontentspage}[\addvspace{-2pt}]%
+	%%%% SECTION IN TOC
+	\titlecontents{section}[3.6pc]
+	{\hypersetup{linkcolor=black}\itshape\addvspace{10pt}}
+	{ } %{\contentslabel[\thecontentslabel]{2.4pc}}
+	{}
+	{\hypersetup{linkcolor=black}\upshape \dotfill\small\sffamily \thecontentspage}
+	[]
+	%%%% SUBSECTION IN TOC
+	\titlecontents*{subsection}[4.4pc]
+	{\hypersetup{linkcolor=black}\itshape\addvspace{1pt}\footnotesize}
+	{}
+	{}
+	{\hypersetup{linkcolor=black} \footnotesize\thecontentspage}
+	[ \textbullet\ ][]
+	%%%% PALABRA -ÍNDICE-
+\makeatletter
+\renewcommand{\tableofcontents}{%
+	\chapter*{%
+		\vspace*{-20pt}%\p@}%
+		\begin{tikzpicture}[remember picture, overlay]%
+		\pgftext[right,x=15cm,y=0.2cm]{\Huge\bfseries\sffamily Índice}% \contentsname};%
+		\end{tikzpicture}}%
+	\@starttoc{toc}}
+\makeatother
+
+% \addto\captionsspanish{\renewcommand{\contentsname}{Contenidos}} % change ToC name with [spanish]babel
+
+\author{Carlos Romero}
+\title{Naturalización de la Metafísica Modal}
+
+\begin{document}
+
+\frontmatter
+
+\begin{titlepage}
+          % FORMATO PARA TESIS DEL POSGRADO UNAM
+\begin{tcolorbox}[enhanced,spread=1pt,interior style={top color=white,bottom color=white}
+%interior style={top color=white,bottom color=blue!10}
+]
+%\begin{minipage}[c][0.1\textheight][t]{1\textwidth}
+	\vspace{3cm}
+	\begin{center}
+	\includegraphics[width=3cm, height=3cm]{unam}
+	\end{center}
+%\end{minipage}
+	\begin{minipage}[c][0.1\textheight][t]{1\textwidth}
+		\begin{center}
+			\vspace{.7cm}
+			{\sffamily\Large \bfseries \scshape {Universidad Nacional Aut\'onoma de M\'exico}}\\
+			\vspace{.2cm}
+			{\sffamily\scshape Programa de Maestría y Doctorado en Filosofía}
+		\end{center}
+	\end{minipage}
+	\begin{minipage}[c][0.6\textheight][t]{1\textwidth}
+		\begin{center}
+			\vspace{1.7cm}
+			{\sffamily\LARGE\scshape\bfseries \color{aqua}{Naturalizaci\'{o}n de la Metaf\'{i}sica Modal}}\\
+			\vspace{1.7cm}
+			\makebox[5cm][c]{\sffamily TESIS}  \\%[8pt]
+			{\sffamily que para optar por el grado de} \\[5pt]
+			{\sffamily \large \textbf{Doctor en Filosof\'ia}}\\[40pt]            
+			{\sffamily PRESENTA:}\\[5pt]
+			{\sffamily \large \textbf{Carlos Alberto Romero Castillo}}\\
+			\vspace{1cm}
+				\begin{tabular}{l l l}
+				{\sffamily Tutor:} & {\sffamily\scshape Dr. Elias Okon Gurvich} & {\sffamily\small IIFs, UNAM}\\
+				\multirow{2}{*}{\sffamily Comit\'e:} & {\sffamily\scshape Dr. Alessandro Torza} & {\sffamily\small IIFs, UNAM}\\
+				& {\sffamily\scshape Dra. Lourdes Valdivia Dounce} & {\sffamily\small FFyL, UNAM}\\
+				\end{tabular}	\\
+			\vspace{0.5cm}
+			{\sffamily Ciudad de M\'exico,}{ }{\sffamily Noviembre de 2019} 	
+		\end{center}
+	\end{minipage}
+\end{tcolorbox}
+\end{titlepage}
+
+
+\pagestyle{plain}
+
+	\tableofcontents
+
+
+\chapter*{Agradecimientos}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+ \input{capitulos/agradecimientos}
+ 
+\newpage
+  
+ \epigraph{Epígrafe 1.}{---Fuente 1}
+ 
+ 
+ \epigraph{Epígrafe 2.}{---Fuente 2}
+
+
+ \newpage
+ 
+
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+\input{capitulos/resumen}
+
+
+\chapter*{Abstract in English}
+\addcontentsline{toc}{chapter}{Abstract in English}
+\input{capitulos/abstracteng}
+
+
+\mainmatter
+
+
+\chapter{Introducción}\label{ch:Introduccion}
+ \input{capitulos/01_introduccion}
+
+
+\chapter{Capítulo 2}\label{ch:2}
+ \input{capitulos/02_}
+
+\chapter{Conclusiones de la tesis}
+ \input{capitulos/0n_conclusiones}
+
+
+\backmatter
+
+
+% \chapter*{Referencias bibiliográficas}
+\addcontentsline{toc}{chapter}{Referencias bibiliográficas}
+% \input{capitulos/referencias}
+\bibliography{bibfile1}   % Aqui doy por sentado que tienes un .bib en el mismo folder 
+
+\appendix
+
+%\cleardoublepage
+\addcontentsline{toc}{chapter}{Índice analítico}
+\renewcommand\indexname{Índice analítico}
+\printindex
+
+\end{document}
