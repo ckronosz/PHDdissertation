@@ -16,8 +16,6 @@
 \usepackage{makeidx}			% to create analytical index
 	\makeindex
 \usepackage{amsmath}
-%\usepackage{amsfonts}
-%\usepackage{amssymb}
 \usepackage{amsthm}				
 	\newtheorem{definition}{Definici\'on}		% to define Definicion environment
 	\newtheorem{theorem}{Teorema}				% to define Teorema environment
@@ -28,7 +26,6 @@
 	\setlist[description]{font=\normalfont\scshape}	% descriptions with small caps
 	\renewcommand{\labelitemi}{\textbullet}	% itemize with bullet instead of blacksquare
 \usepackage{lettrine} 			% for capital letters at the start of the chapter
-% \usepackage{hanging}			% for hanging paragraphs in bibliography % removed for natbib
 \usepackage{color}				% to use colors
 \usepackage{xcolor}				% to define colors used for tables and titles
 	\definecolor{blueish}{RGB}{4,122,255}
@@ -39,7 +36,6 @@
 	\definecolor{chapopcolor}{RGB}{0,100,150}
 \usepackage{titletoc}			% for table of contents at beginning of chapters
 \usepackage[explicit]{titlesec}	% for title formats
-	%\titleformat{\chapter}[hang]{\sffamily\huge\bfseries\color{blueish}}{Capítulo \thechapter.}{0.5em}{}[]{#1.}
 	\titleformat{name=\chapter,numberless}[hang]{}{}{0pt}{\sffamily\huge\bfseries\color{chapopcolor!80!black} #1}
 		\titlespacing*{name=\chapter,numberless}{0pt}{0pt}{*10}     %% adjust 30 as per need
 	\titleformat{name=\section}{}{}{0pt}{\sffamily\Large\bfseries\color{chapopcolor}\thesection.  #1}
@@ -91,8 +87,8 @@
 		}	
 \usepackage{tcolorbox}			% for colored boxes
 	\tcbuselibrary{breakable,skins}
-\newtcolorbox{inicio}[1][]	% for boxes containing chapter ToC
-{enhanced jigsaw,center,colframe=blue!50!black!50!white,colback=white,opacityback=0.7,drop fuzzy shadow=blue!50!black!60!white,boxrule=0.4pt}
+	\newtcolorbox{inicio}[1][]	% for boxes containing chapter ToC
+	{enhanced jigsaw,center,colframe=blue!50!black!50!white,colback=white,opacityback=0.7,drop fuzzy shadow=blue!50!black!60!white,boxrule=0.4pt}
 \usepackage[breaklinks=true,
 colorlinks=true,linkcolor=newblue,urlcolor=newblue,citecolor=newblue,anchorcolor=newblue,
 bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
@@ -100,12 +96,9 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 	\setlength\epigraphwidth{.7\textwidth}
 	\setlength\epigraphrule{0pt}
 	\renewcommand{\textflush}{flushepinormal}
-% \usepackage[skip=0.3em,indent=1em]{parskip}
 \renewcommand{\baselinestretch}{1.2}		% redefines space between lines
 \raggedbottom % to allow ragged page bottoms
 \setlength{\parskip}{0.3em}				% redefines space between paragraphs
-%	\DeclareMathSymbol{\cfcond}{\mathrel}{symbolsC}{128} % Lewis’s ‘would’ counterfactual
-%	\DeclareMathSymbol{\dcfcond}{\mathrel}{symbolsC}{132} % Lewis’s ‘might’ counterfactual
 \newcommand{\counterfactual}{\ensuremath{%			to define Lewis's counterfactual
 		\Box\kern-1.5pt
 		\raise0.1pt\hbox{$\mathord{\rightarrow}$}}}
@@ -151,7 +144,6 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 	\@starttoc{toc}}
 \makeatother
 
-% \addto\captionsspanish{\renewcommand{\contentsname}{Contenidos}} % change ToC name with [spanish]babel
 
 \author{Carlos Romero}
 \title{Naturalización de la Metafísica Modal}
@@ -243,27 +235,6 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 \chapter{Introducción}\label{ch:Introduccion}
  \input{capitulos/01_introduccion}
 
-
-\chapter{Contra la \textit{modalidad metafísica}}\label{ch:ConceptoModalidadMet}
- \input{capitulos/02_modalidad_metafisica}
-
-
-\chapter{?`Es posible naturalizar a la metafísica modal?}\label{ch:ProyectoNaturalizaciónModalidad}
- \input{capitulos/03_naturalizacion_modalidad}
- 
- 
-\chapter{Espacios de posibilidad e ideología modal en las ciencias}\label{chap:EspaciosPosibilidad}
- \input{capitulos/04_espacios_posibilidad}
-
-
-\chapter{Una metafísica naturalizada de la modalidad}\label{chap:RAMS}
- \input{capitulos/05_realismo_estructura_modal}
-
-
-\chapter{La lógica modal naturalizada}\label{ch:LogicaModalNatural}
- \input{capitulos/06_logica_modal_naturalizada}
-
-
 \chapter{Conclusiones}
  \input{capitulos/07_conclusiones}
 
@@ -271,17 +242,8 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 \backmatter
 
 
-% \chapter*{Referencias bibiliográficas}
 \addcontentsline{toc}{chapter}{Bibliografía}
-% \input{capitulos/referencias}
 \bibliography{bibfile1}
 
-
-% \appendix
-
-	%\cleardoublepage
-% \addcontentsline{toc}{chapter}{Índice analítico}
-% \renewcommand\indexname{Índice analítico}
-% \printindex
 
 \end{document}
