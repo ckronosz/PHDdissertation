@@ -1,6 +1,6 @@
 	% !TeX program = xelatex
 	% !TeX spellcheck = es_ES
-\documentclass[12pt,letterpaper]{book} % document class
+\documentclass[12pt,letterpaper]{book} 
 \usepackage[utf8x]{inputenc}	% input encoding
 \usepackage[spanish]{babel}		% language
 \usepackage[T1]{fontenc}
@@ -16,16 +16,19 @@
 \usepackage{makeidx}			% to create analytical index
 	\makeindex
 \usepackage{amsmath}
+%\usepackage{amsfonts}
+%\usepackage{amssymb}
 \usepackage{amsthm}				
 	\newtheorem{definition}{Definici\'on}		% to define Definicion environment
 	\newtheorem{theorem}{Teorema}				% to define Teorema environment
-\usepackage{physics}			% for bra-ket and other physics notation
+\usepackage{physics}			% for bra ket notation
 \usepackage{multirow}			% for multiple rows in a table (used for titlepage)
 \usepackage{longtable}			% for breakable tables
 \usepackage{enumitem}			% to modify enumeration environments
 	\setlist[description]{font=\normalfont\scshape}	% descriptions with small caps
 	\renewcommand{\labelitemi}{\textbullet}	% itemize with bullet instead of blacksquare
 \usepackage{lettrine} 			% for capital letters at the start of the chapter
+% \usepackage{hanging}			% for hanging paragraphs in bibliography % removed for natbib
 \usepackage{color}				% to use colors
 \usepackage{xcolor}				% to define colors used for tables and titles
 	\definecolor{blueish}{RGB}{4,122,255}
@@ -50,12 +53,42 @@
 \usepackage{graphicx}			% builds upon the graph­ics package
 	\graphicspath{ {images/} }	% the folder for images
 \usepackage[left=2.5cm,right=2.2cm,top=2.7cm,bottom=2.5cm]{geometry}
-\usepackage[reset=true,backref=true]{enotez}	% to use endnotes instead of footnotes
-	\setenotez{reset = true,list-heading = \section*{#1}}
+\usepackage{enotez}	% to use endnotes instead of footnotes
+	\setenotez{reset=true,backref=true,list-heading = \section*{#1}}
 	\let\footnote=\endnote
 \usepackage{tikz}				% for tikz images
 	\usetikzlibrary{babel}
 	\usetikzlibrary{arrows.meta,calc,positioning,shapes,arrows,decorations.pathmorphing}
+\usepackage{pgfplots}			% for graph plotting
+	\pgfplotsset{width=12cm,compat=newest}
+	\def\axisdefaultwidth{360pt}
+	\pgfplotsset{
+	every axis/.append style = {thick},tick style = {thick,black},
+	%
+	% #1 = x, y, or z
+	% #2 = the shift value
+	/tikz/normal shift/.code 2 args = {%
+		\pgftransformshift{%
+			\pgfpointscale{#2}{\pgfplotspointouternormalvectorofticklabelaxis{#1}}%
+		}%
+	},%
+	%
+	range3frame/.style = {
+		tick align        = outside,
+		scaled ticks      = false,
+		enlargelimits     = false,
+		ticklabel shift   = {10pt},
+		axis lines*       = left,
+		line cap          = round,
+		clip              = false,
+		xtick style       = {normal shift={x}{10pt}},
+		ytick style       = {normal shift={y}{10pt}},
+		ztick style       = {normal shift={z}{10pt}},
+		x axis line style = {normal shift={x}{10pt}},
+		y axis line style = {normal shift={y}{10pt}},
+		z axis line style = {normal shift={z}{10pt}},
+			}
+		}	
 \usepackage{tcolorbox}			% for colored boxes
 	\tcbuselibrary{breakable,skins}
 \newtcolorbox{inicio}[1][]	% for boxes containing chapter ToC
@@ -67,21 +100,24 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 	\setlength\epigraphwidth{.7\textwidth}
 	\setlength\epigraphrule{0pt}
 	\renewcommand{\textflush}{flushepinormal}
+% \usepackage[skip=0.3em,indent=1em]{parskip}
 \renewcommand{\baselinestretch}{1.2}		% redefines space between lines
 \raggedbottom % to allow ragged page bottoms
 \setlength{\parskip}{0.3em}				% redefines space between paragraphs
-\newcommand{\counterfactual}{\ensuremath{%			to define Lewis's counterfactual conditional
+%	\DeclareMathSymbol{\cfcond}{\mathrel}{symbolsC}{128} % Lewis’s ‘would’ counterfactual
+%	\DeclareMathSymbol{\dcfcond}{\mathrel}{symbolsC}{132} % Lewis’s ‘might’ counterfactual
+\newcommand{\counterfactual}{\ensuremath{%			to define Lewis's counterfactual
 		\Box\kern-1.5pt
 		\raise0.1pt\hbox{$\mathord{\rightarrow}$}}}
 
-%%%%%% begin - CHAPTER OPENER format %%%%%% 
+%%%%%% INICIO - FORMATO CHAPTER OPENER %%%%%% 
 	\titleformat{name=\chapter}[display]%
 	{\normalfont\hfuzz=\maxdimen}%
 	{\color{gray}\raggedleft\fontsize{55}{2}\sffamily\bfseries\setlength{\baselineskip}{0pt}\thechapter}%%	FOR CHAP NUMBER
 	{0.5pc}%
 	{\color{chapopcolor!80!black}\centering\fontsize{30}{30}\sffamily\bfseries #1}%
 	\titlespacing*{\chapter}{0pt}{*1}{*3}
-%%%%%% end - CHAPTER OPENER %%%%%% 
+%%%%%% FIN - FORMATO Capítulo %%%%%% 
 %%%%%% BEGIN - TABLE OF CONTENTS FORMAT %%%%%%
 	\contentsmargin{0cm}%
 	%%%% CHAPTER IN TOC
@@ -102,7 +138,7 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 	{\hypersetup{linkcolor=black}\itshape\addvspace{1pt}\footnotesize}
 	{}
 	{}
-	{\hypersetup{linkcolor=black} \footnotesize\thecontentspage}
+	{\hypersetup{linkcolor=black} \footnotesize(\thecontentspage)}
 	[ \textbullet\ ][]
 	%%%% PALABRA -ÍNDICE-
 \makeatletter
@@ -120,12 +156,12 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 \author{Carlos Romero}
 \title{Naturalización de la Metafísica Modal}
 
+
 \begin{document}
 
 \frontmatter
 
 \begin{titlepage}
-          % FORMATO PARA TESIS DEL POSGRADO UNAM
 \begin{tcolorbox}[enhanced,spread=1pt,interior style={top color=white,bottom color=white}
 %interior style={top color=white,bottom color=blue!10}
 ]
@@ -133,6 +169,7 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 	\vspace{3cm}
 	\begin{center}
 	\includegraphics[width=3cm, height=3cm]{unam}
+% for comparison {\sffamily\Large \bfseries \scshape {Universidad Nacional Aut\'onoma de M\'exico}}\\
 	\end{center}
 %\end{minipage}
 	\begin{minipage}[c][0.1\textheight][t]{1\textwidth}
@@ -160,7 +197,7 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 				& {\sffamily\scshape Dra. Lourdes Valdivia Dounce} & {\sffamily\small FFyL, UNAM}\\
 				\end{tabular}	\\
 			\vspace{0.5cm}
-			{\sffamily Ciudad de M\'exico,}{ }{\sffamily Noviembre de 2019} 	
+			{\sffamily Ciudad de M\'exico,}{ }{\sffamily Octubre de 2020} 	
 		\end{center}
 	\end{minipage}
 \end{tcolorbox}
@@ -171,30 +208,33 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 
 	\tableofcontents
 
-
-\chapter*{Agradecimientos}
-\addcontentsline{toc}{chapter}{Agradecimientos}
- \input{capitulos/agradecimientos}
- 
 \newpage
-  
- \epigraph{Epígrafe 1.}{---Fuente 1}
+
+ \epigraph{This metaphysical issue is taken as the fundamental one for the realism debate by van Fraassen, and he is right: \textit{metaphysics in general, and modal metaphysics in particular, are the crux of scientific realism}.}{---J. Ladyman}%, `Scientific Realism Again'}
  
  
- \epigraph{Epígrafe 2.}{---Fuente 2}
+ \epigraph{\textit{One's attitude toward modalities has a profound effect on one's whole theory of science}. Actualists, including actual realists, must hold that the aim of science is primarily to describe the actual history of the world. For modalists, including modal empiricists, the aim is to describe the structure of physical possibility (or propensity) and necessity. The actual history is just that one possibility that happened to be realized. This difference in aims is connected with profound differences in how one understands diverse scientific activities such as causal attribution, explanation, and experimental design.}{---R. Giere}%, `Constructive Realism'}
 
 
  \newpage
  
 
+\chapter*{Agradecimientos}
+\addcontentsline{toc}{chapter}{Agradecimientos}
+ \input{capitulos/agradecimientos}
+
+
+\newpage 
+ 
+
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
-\input{capitulos/resumen}
+ \input{capitulos/resumen}
 
 
-\chapter*{Abstract in English}
+\chapter*{English Abstract}
 \addcontentsline{toc}{chapter}{Abstract in English}
-\input{capitulos/abstracteng}
+ \input{capitulos/abstracteng}
 
 
 \mainmatter
@@ -204,26 +244,44 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
  \input{capitulos/01_introduccion}
 
 
-\chapter{Capítulo 2}\label{ch:2}
- \input{capitulos/02_}
+\chapter{Contra la \textit{modalidad metafísica}}\label{ch:ConceptoModalidadMet}
+ \input{capitulos/02_modalidad_metafisica}
 
-\chapter{Conclusiones de la tesis}
- \input{capitulos/0n_conclusiones}
+
+\chapter{?`Es posible naturalizar a la metafísica modal?}\label{ch:ProyectoNaturalizaciónModalidad}
+ \input{capitulos/03_naturalizacion_modalidad}
+ 
+ 
+\chapter{Espacios de posibilidad e ideología modal en las ciencias}\label{chap:EspaciosPosibilidad}
+ \input{capitulos/04_espacios_posibilidad}
+
+
+\chapter{Una metafísica naturalizada de la modalidad}\label{chap:RAMS}
+ \input{capitulos/05_realismo_estructura_modal}
+
+
+\chapter{La lógica modal naturalizada}\label{ch:LogicaModalNatural}
+ \input{capitulos/06_logica_modal_naturalizada}
+
+
+\chapter{Conclusiones}
+ \input{capitulos/07_conclusiones}
 
 
 \backmatter
 
 
 % \chapter*{Referencias bibiliográficas}
-\addcontentsline{toc}{chapter}{Referencias bibiliográficas}
+\addcontentsline{toc}{chapter}{Bibliografía}
 % \input{capitulos/referencias}
-\bibliography{bibfile1}   % Aqui doy por sentado que tienes un .bib en el mismo folder 
+\bibliography{bibfile1}
 
-\appendix
 
-%\cleardoublepage
-\addcontentsline{toc}{chapter}{Índice analítico}
-\renewcommand\indexname{Índice analítico}
-\printindex
+% \appendix
+
+	%\cleardoublepage
+% \addcontentsline{toc}{chapter}{Índice analítico}
+% \renewcommand\indexname{Índice analítico}
+% \printindex
 
 \end{document}
