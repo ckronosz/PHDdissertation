@@ -1,41 +1,40 @@
 	% !TeX program = xelatex
 	% !TeX spellcheck = es_ES
 \documentclass[12pt,letterpaper]{book} 
-\usepackage[utf8x]{inputenc}	% input encoding
-\usepackage[spanish]{babel}		% language
-\usepackage[T1]{fontenc}
-\usepackage{fontspec}
-\usepackage[scale=0.8]{roboto-mono}	% scaled roboto mono for texttt shape
-\usepackage[expert,sfscaled,utopia]{mathdesign}
-\usepackage[scaled=0.95]{classico}
-\usepackage[round,elide]{natbib}		% bibliography with round parenthesis
-	\bibliographystyle{authordate1}		%authordate1: initial caps; 3: author in smallcaps
-\usepackage{ucs} 				% in conjunction with inputenc, to write in UTF-8
-\usepackage{csquotes}			% for specifying quotes
-	\MakeOuterQuote{"}
-\usepackage{makeidx}			% to create analytical index
-	\makeindex
+\usepackage[utf8x]{inputenc}					% input encoding
+\usepackage[spanish]{babel}					% language
+\usepackage[T1]{fontenc}					% font encoding
+\usepackage{fontspec}						% to specify fonts
+\usepackage[scale=0.8]{roboto-mono}				% scaled roboto mono for texttt shape
+\usepackage[expert,sfscaled,utopia]{mathdesign}			% utopia font for roman text
+\usepackage[scaled=0.95]{classico}				% classico font for sans-serif titles
+\usepackage[round,elide]{natbib}				% bibliography with round parenthesis
+	\bibliographystyle{authordate1}				%authordate1: initial caps; 3: author in smallcaps
+\usepackage{ucs} 						% in conjunction with inputenc, to write in UTF-8
+\usepackage{csquotes}						% for specifying quotes
+	\MakeOuterQuote{"}	
 \usepackage{amsmath}
 \usepackage{amsthm}				
-	\newtheorem{definition}{Definici\'on}		% to define Definicion environment
+	\newtheorem{definition}{Definici\'on}			% to define Definicion environment
 	\newtheorem{theorem}{Teorema}				% to define Teorema environment
-\usepackage{physics}			% for bra ket notation
-\usepackage{multirow}			% for multiple rows in a table (used for titlepage)
-\usepackage{longtable}			% for breakable tables
-\usepackage{enumitem}			% to modify enumeration environments
+\usepackage{physics}						% for bra ket notation
+\usepackage{multirow}						% for multiple rows in a table (used for titlepage)
+\usepackage{longtable}						% for breakable tables
+\usepackage{enumitem}						% to modify enumeration environments
+	\setlist{nosep} 					% removes all vertical spacing within and around the list
 	\setlist[description]{font=\normalfont\scshape}	% descriptions with small caps
 	\renewcommand{\labelitemi}{\textbullet}	% itemize with bullet instead of blacksquare
-\usepackage{lettrine} 			% for capital letters at the start of the chapter
-\usepackage{color}				% to use colors
-\usepackage{xcolor}				% to define colors used for tables and titles
+\usepackage{lettrine} 						% for capital letters at the start of the chapter
+\usepackage{color}						% to use colors
+\usepackage{xcolor}						% to define colors used for tables and titles
 	\definecolor{blueish}{RGB}{4,122,255}
 	\definecolor{aqua}{RGB}{0,100,150}
 	\definecolor{deepblue}{RGB}{0,102,205}
 	\definecolor{newgray}{RGB}{77,77,77}
 	\definecolor{newblue}{RGB}{0,0,89}
 	\definecolor{chapopcolor}{RGB}{0,100,150}
-\usepackage{titletoc}			% for table of contents at beginning of chapters
-\usepackage[explicit]{titlesec}	% for title formats
+\usepackage{titletoc}						% for table of contents at beginning of chapters
+\usepackage[explicit]{titlesec}					% for title formats
 	\titleformat{name=\chapter,numberless}[hang]{}{}{0pt}{\sffamily\huge\bfseries\color{chapopcolor!80!black} #1}
 		\titlespacing*{name=\chapter,numberless}{0pt}{0pt}{*10}     %% adjust 30 as per need
 	\titleformat{name=\section}{}{}{0pt}{\sffamily\Large\bfseries\color{chapopcolor}\thesection.  #1}
@@ -46,16 +45,23 @@
 	\titleformat{name=\subsubsection,numberless}{}{}{0pt}{\sffamily\normalsize\bfseries\color{chapopcolor}\qquad#1}
 	\titleformat{name=\paragraph}[runin]{}{}{0pt}{\sffamily\normalsize\bfseries\color{black}#1}
 		\titlespacing*{name=\paragraph}{0pt}{1ex}{1ex}
-\usepackage{graphicx}			% builds upon the graph­ics package
-	\graphicspath{ {images/} }	% the folder for images
+\usepackage{graphicx}						% for graphics
+	\graphicspath{ {images/} }				% the images folder
 \usepackage[left=2.5cm,right=2.2cm,top=2.7cm,bottom=2.5cm]{geometry}
-\usepackage{enotez}	% to use endnotes instead of footnotes
+\usepackage{enotez}						% to use endnotes instead of footnotes
 	\setenotez{reset=true,backref=true,list-heading = \section*{#1}}
 	\let\footnote=\endnote
-\usepackage{tikz}				% for tikz images
+\usepackage[continuous,page]{pagenote}				% para los textos citados, los pongo al final de la tesis
+	\makepagenote
+	\renewcommand*{\notedivision}{}%\section*{Textos originales citados}}
+	\renewcommand*{\pagenotesubhead}[2]{}
+	\renewcommand\thepagenote{T\arabic{pagenote}\footnotesize}
+	\renewcommand{\notenumintext}[1]{\textsuperscript{#1} }
+	\renewcommand{\notenuminnotes}[1]{\textsuperscript{#1} }
+\usepackage{tikz}						% for tikz images
 	\usetikzlibrary{babel}
 	\usetikzlibrary{arrows.meta,calc,positioning,shapes,arrows,decorations.pathmorphing}
-\usepackage{pgfplots}			% for graph plotting
+\usepackage{pgfplots}						% for graph plotting
 	\pgfplotsset{width=12cm,compat=newest}
 	\def\axisdefaultwidth{360pt}
 	\pgfplotsset{
@@ -85,33 +91,36 @@
 		z axis line style = {normal shift={z}{10pt}},
 			}
 		}	
-\usepackage{tcolorbox}			% for colored boxes
+\usepackage{tcolorbox}						% for colored boxes
 	\tcbuselibrary{breakable,skins}
-	\newtcolorbox{inicio}[1][]	% for boxes containing chapter ToC
-	{enhanced jigsaw,center,colframe=blue!50!black!50!white,colback=white,opacityback=0.7,drop fuzzy shadow=blue!50!black!60!white,boxrule=0.4pt}
+\newtcolorbox{inicio}[1][]					% for boxes containing chapter ToC
+{enhanced jigsaw,center,colframe=blue!50!black!50!white,colback=white,opacityback=0.7,drop fuzzy shadow=blue!50!black!60!white,boxrule=0.4pt}
 \usepackage[breaklinks=true,
 colorlinks=true,linkcolor=newblue,urlcolor=newblue,citecolor=newblue,anchorcolor=newblue,
 bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
-\usepackage{epigraph}			% for epigraphs
+\usepackage{epigraph}						% for epigraphs
 	\setlength\epigraphwidth{.7\textwidth}
 	\setlength\epigraphrule{0pt}
 	\renewcommand{\textflush}{flushepinormal}
-\renewcommand{\baselinestretch}{1.2}		% redefines space between lines
-\raggedbottom % to allow ragged page bottoms
-\setlength{\parskip}{0.3em}				% redefines space between paragraphs
-\newcommand{\counterfactual}{\ensuremath{%			to define Lewis's counterfactual
+\renewenvironment{quote}%					% to modify top separation of quotes
+{\list{}{\topsep=0.1em}\item[]}%
+{\endlist}	
+\renewcommand{\baselinestretch}{1.2}				% redefines space between lines
+\raggedbottom 							% to allow ragged page bottoms
+\setlength{\parskip}{0.3em}					% redefines space between paragraphs
+\newcommand{\counterfactual}{\ensuremath{%			% to define Lewis's counterfactual
 		\Box\kern-1.5pt
 		\raise0.1pt\hbox{$\mathord{\rightarrow}$}}}
 
-%%%%%% INICIO - FORMATO CHAPTER OPENER %%%%%% 
+%%%%%% INICIO - FORMATO INICIAL CAPÍTULO %%%%%% 
 	\titleformat{name=\chapter}[display]%
 	{\normalfont\hfuzz=\maxdimen}%
 	{\color{gray}\raggedleft\fontsize{55}{2}\sffamily\bfseries\setlength{\baselineskip}{0pt}\thechapter}%%	FOR CHAP NUMBER
 	{0.5pc}%
 	{\color{chapopcolor!80!black}\centering\fontsize{30}{30}\sffamily\bfseries #1}%
 	\titlespacing*{\chapter}{0pt}{*1}{*3}
-%%%%%% FIN - FORMATO Capítulo %%%%%% 
-%%%%%% BEGIN - TABLE OF CONTENTS FORMAT %%%%%%
+%%%%%% FIN - FORMATO INICIAL CAPÍTULO %%%%%% 
+%%%%%% BEGIN - TABLA DE CONTENIDOS %%%%%%
 	\contentsmargin{0cm}%
 	%%%% CHAPTER IN TOC
 	\titlecontents{chapter}[0pc]
@@ -143,11 +152,10 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 		\end{tikzpicture}}%
 	\@starttoc{toc}}
 \makeatother
-
+%%%%%% END - TABLA DE CONTENIDOS %%%%%%
 
 \author{Carlos Romero}
 \title{Naturalización de la Metafísica Modal}
-
 
 \begin{document}
 
@@ -195,55 +203,36 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 \end{tcolorbox}
 \end{titlepage}
 
-
 \pagestyle{plain}
-
-	\tableofcontents
-
+\tableofcontents
 \newpage
 
- \epigraph{This metaphysical issue is taken as the fundamental one for the realism debate by van Fraassen, and he is right: \textit{metaphysics in general, and modal metaphysics in particular, are the crux of scientific realism}.}{---J. Ladyman}%, `Scientific Realism Again'}
- 
- 
- \epigraph{\textit{One's attitude toward modalities has a profound effect on one's whole theory of science}. Actualists, including actual realists, must hold that the aim of science is primarily to describe the actual history of the world. For modalists, including modal empiricists, the aim is to describe the structure of physical possibility (or propensity) and necessity. The actual history is just that one possibility that happened to be realized. This difference in aims is connected with profound differences in how one understands diverse scientific activities such as causal attribution, explanation, and experimental design.}{---R. Giere}%, `Constructive Realism'}
-
-
- \newpage
- 
+\epigraph{Epigraph.}{---Author}
+\newpage
 
 \chapter*{Agradecimientos}
 \addcontentsline{toc}{chapter}{Agradecimientos}
- \input{capitulos/agradecimientos}
-
-
+\input{capitulos/agradecimientos}
 \newpage 
- 
 
 \chapter*{Resumen}
 \addcontentsline{toc}{chapter}{Resumen}
- \input{capitulos/resumen}
-
-
-\chapter*{English Abstract}
-\addcontentsline{toc}{chapter}{Abstract in English}
- \input{capitulos/abstracteng}
-
+\input{capitulos/resumen}
 
 \mainmatter
 
-
 \chapter{Introducción}\label{ch:Introduccion}
- \input{capitulos/01_introduccion}
+\input{capitulos/01_introduccion}
 
 \chapter{Conclusiones}
- \input{capitulos/07_conclusiones}
-
+\input{capitulos/07_conclusiones}
 
 \backmatter
-
 
 \addcontentsline{toc}{chapter}{Bibliografía}
 \bibliography{bibfile1}
 
-
+\appendix
+\chapter{Textos citados}
+{\scriptsize \printnotes}
 \end{document}
