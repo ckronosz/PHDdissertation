@@ -9,12 +9,12 @@
 \usepackage[expert,sfscaled,utopia]{mathdesign}			% utopia font for roman text
 \usepackage[scaled=0.95]{classico}				% classico font for sans-serif titles
 \usepackage[round,elide]{natbib}				% bibliography with round parenthesis
-	\bibliographystyle{authordate1}				%authordate1: initial caps; 3: author in smallcaps
+	\bibliographystyle{authordate1}				% authordate1: initial caps; 3: author in smallcaps
 \usepackage{ucs} 						% in conjunction with inputenc, to write in UTF-8
 \usepackage{csquotes}						% for specifying quotes
 	\MakeOuterQuote{"}	
-\usepackage{amsmath}
-\usepackage{amsthm}				
+\usepackage{amsmath}						% AMS math
+\usepackage{amsthm}						% allows to define AMS theorem environments
 	\newtheorem{definition}{Definici\'on}			% to define Definicion environment
 	\newtheorem{theorem}{Teorema}				% to define Teorema environment
 \usepackage{physics}						% for bra ket notation
@@ -103,8 +103,8 @@ bookmarks=true,pdfpagelayout=TwoPageRight]{hyperref}		% for hyperlinks
 	\setlength\epigraphrule{0pt}
 	\renewcommand{\textflush}{flushepinormal}
 \renewenvironment{quote}%					% to modify top separation of quotes
-{\list{}{\topsep=0.1em}\item[]}%
-{\endlist}	
+	{\list{}{\topsep=0.1em}\item[]}%
+	{\endlist}	
 \renewcommand{\baselinestretch}{1.2}				% redefines space between lines
 \raggedbottom 							% to allow ragged page bottoms
 \setlength{\parskip}{0.3em}					% redefines space between paragraphs
