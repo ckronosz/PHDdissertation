@@ -10,10 +10,15 @@
 		\printcontents[chapters]{}{1}{\setcounter{tocdepth}{1}}
 	}
 \end{inicio}
-\bigskip 
+\bigskip\bigskip
 
 
 \section{Sección 1}
 \lettrine[lines = 3]{\sffamily\color{chapopcolor} L}{etra capital de tres lineas} y palabras en versalitas.
 
-\printendnotes  % para imprimir las notas finales
+
+\subsection{Una subsección}
+\noindent Inicio del párrafo.
+
+
+\printendnotes						  % para imprimir las notas finales del capítulo
